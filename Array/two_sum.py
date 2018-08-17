@@ -37,30 +37,20 @@ https://leetcode.com/problems/two-sum/description/
 """
 
 class Solution(object):
-    def binarySearch(self, rawList, target):
-        split = len(rawList) // 2
-        
-        left = rawList[:split]
-        right = rawList[split:]
-        
-        
-        if not left and not right:
-            return None
-        
-        if left and left[-1] == target:
-            return True
-        
-        if right and right[0] == target:
-            return True
-        
-        if len(left) > 1 and left[-1] > target:
-            return self.binarySearch(left, target)
-        
-        if len(right) > 1 and right[0] < target:
-            return self.binarySearch(right, target)
-        
-        
     def twoSum(self, nums, target):
+
+        result = self._twoSum(nums, target)
+        a = nums.index(result[0])
+        # b = nums.index(result[-1], a+1)
+        for i in xrange(len(nums)-1, -1, -1):
+            if nums[i] == result[1]:
+                return [a, i]
+                # b = i
+                # break
+        # return [a, b]
+        
+    
+    def _twoSum(self, nums, target):
         """
         :type nums: List[int]
         :type target: int
@@ -68,14 +58,57 @@ class Solution(object):
         """
 
         sortedNums = sorted(nums)
-        for i, data in enumerate(sortedNums):
+        start = 0
+        end = len(sortedNums) - 1
+        while start <= end:
+            # print(nums[start] + nums[end])
+            if sortedNums[start] + sortedNums[end] == target:
+                return sortedNums[start], sortedNums[end]
             
-            if self.binarySearch(sortedNums[:i]+sortedNums[i+1:], target-data):
-                result = sorted([nums.index(data), nums.index(target-data)])
-                if result[0] == result[1]:
-                    return [result[0], nums[result[0]+1:].index(target-data)+result[0]+1]
+            if sortedNums[start] + sortedNums[end] > target:
+                end -= 1
+            else:
+                start += 1
                 
-                return result
+    # def binarySearch(self, rawList, target):
+    #     split = len(rawList) // 2
+        
+    #     left = rawList[:split]
+    #     right = rawList[split:]
+        
+        
+    #     if not left and not right:
+    #         return None
+        
+    #     if left and left[-1] == target:
+    #         return True
+        
+    #     if right and right[0] == target:
+    #         return True
+        
+    #     if len(left) > 1 and left[-1] > target:
+    #         return self.binarySearch(left, target)
+        
+    #     if len(right) > 1 and right[0] < target:
+    #         return self.binarySearch(right, target)
+        
+        
+    # def twoSum(self, nums, target):
+    #     """
+    #     :type nums: List[int]
+    #     :type target: int
+    #     :rtype: List[int]
+    #     """
+
+    #     sortedNums = sorted(nums)
+    #     for i, data in enumerate(sortedNums):
+            
+    #         if self.binarySearch(sortedNums[:i]+sortedNums[i+1:], target-data):
+    #             result = sorted([nums.index(data), nums.index(target-data)])
+    #             if result[0] == result[1]:
+    #                 return [result[0], nums[result[0]+1:].index(target-data)+result[0]+1]
+                
+    #             return result
             # elif target < 0 and data > target:
                 # if self.binarySearch(nums[:i]+nums[i+1:], target-data):
                     # return sorted([i, nums[i+1:].index(target-data)+i+1])
