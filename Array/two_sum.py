@@ -18,6 +18,19 @@ return [0, 1].
 改进：
 有O(n) 方式。
 
+2018/8/17：
+O(n) 方式总结：
+
+在有序状态下，从后向前是逐渐缩小，从前向后逐渐增大。
+[-4, -1, 0, 1, 2]
+ 0             4
+
+当 start + end < target 时，end已经不能在增大了，只能增大start。
+当 start + end > target 时，start不能在缩小了，只能缩小end。
+
+一直到找到 target 或 start 与 end 相遇结束。
+
+
 测试数据：
 https://leetcode.com/problems/two-sum/description/
 
@@ -56,8 +69,6 @@ class Solution(object):
 
         sortedNums = sorted(nums)
         for i, data in enumerate(sortedNums):
-            
-            # if data <= target:
             
             if self.binarySearch(sortedNums[:i]+sortedNums[i+1:], target-data):
                 result = sorted([nums.index(data), nums.index(target-data)])
