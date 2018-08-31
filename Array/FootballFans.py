@@ -10,7 +10,8 @@
 OK, bug free.
 
 类似算法的 leetcode：
-https://leetcode.com/problems/number-of-islands/description/
+https://leetcode.com/problems/number-of-islands/description/  解答请看 NumberOfIslands.py
+https://leetcode.com/problems/max-area-of-island/description/ 解答请看 
 
 """
 
