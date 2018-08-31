@@ -8,6 +8,10 @@
 3. 给一个 M*N 的二维球场，0为没人，1为有人，求出群体个数P以及最大的群体人数Q.
 
 OK, bug free.
+
+类似算法的 leetcode：
+https://leetcode.com/problems/number-of-islands/description/
+
 """
 
 test = [
@@ -60,7 +64,7 @@ def getFootballFans(court):
             try:
                 if i[0] < 0 or i[1] < 0:
                     continue
-                    
+
                 if court[i[1]][i[0]] == 1:
                     court[i[1]][i[0]] = 0
                     result += 1
