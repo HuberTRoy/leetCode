@@ -58,6 +58,9 @@ def getFootballFans(court):
         Xy = makeAroundXY(x, y)
         for i in Xy:
             try:
+                if i[0] < 0 or i[1] < 0:
+                    continue
+                    
                 if court[i[1]][i[0]] == 1:
                     court[i[1]][i[0]] = 0
                     result += 1
