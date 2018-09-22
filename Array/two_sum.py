@@ -36,13 +36,18 @@ https://leetcode.com/problems/two-sum/description/
 
 """
 
+try:
+    range = xrange
+except NameError:
+    range = range
+
 class Solution(object):
     def twoSum(self, nums, target):
 
         result = self._twoSum(nums, target)
         a = nums.index(result[0])
         # b = nums.index(result[-1], a+1)
-        for i in xrange(len(nums)-1, -1, -1):
+        for i in range(len(nums)-1, -1, -1):
             if nums[i] == result[1]:
                 return [a, i]
                 # b = i
