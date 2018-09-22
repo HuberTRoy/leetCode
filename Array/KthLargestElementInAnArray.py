@@ -80,7 +80,7 @@ class Solution(object):
         l, r, m = [(0, left), (len(unsorted_list) - 1, right), (len(unsorted_list) // 2, middle)]
         # 这里对比了自己写的merge sort 与内置的差距，
         # 在有key的情况下差距非常大。
-        return sorted(l_r_m, key=lambda x: x[1])[1][0]
+        return sorted([l, r, m], key=lambda x: x[1])[1][0]
 
 
     def mergeSort(self, unsorted_list, key=None):

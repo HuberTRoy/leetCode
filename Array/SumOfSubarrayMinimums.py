@@ -183,9 +183,3 @@ class Solution(object):
         #     result += (A[i] * sum([sums, _self, left, right]))
         # # print(result)
         # return result % mod
-
-
-a = Solution()
-
-print(len(b))
-print(a.sumSubarrayMins(c))
