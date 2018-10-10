@@ -1,9 +1,14 @@
-# 算法相关知识储备
-
-来源 leetCode 和 其他算法书。
+<h3 align="center">算法知识储备 Leetcode with Python</h3>
+<div align="center">
+    <img src="0_icons/book.png">
+</div>
+<div align="center">
+    <img src="https://img.shields.io/badge/%3E-Leetcode-blue.svg">
+    <img src="https://img.shields.io/badge/-Algorithm-blue.svg">
+</div>
 
 ## [数组(及其相关结构)](Array/)
-* - [可容纳最多水的一组容器.py](Array/ContainerWithMostWater.py)
+* [可容纳最多水的一组容器.py](Array/ContainerWithMostWater.py)
 * - [糖果公平交换.py](Array/FairCandySwap.py)
 * - [已排序的数组中找到第一和最后一个元素.py](Array/FindFirstAndLastPositionOfElementInSortedArray.py)
 * - [旋转过的排序数组中找到最小的元素.py](Array/FindMinimumInRotatedSortedArray.py)
