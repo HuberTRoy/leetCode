@@ -75,6 +75,23 @@ beat 99% 84ms
 测试地址：
 https://leetcode.com/problems/find-all-anagrams-in-a-string/description/
 
+2018/10/27 修正：
+
+上次分析后是有不足的，可以AC只是因为这个题的测试用例很少。
+
+问题出在上面分析的 2. 和 3. 中，
+重新梳理下：
+若没有存在于最后一个dp中，那么先判断是否有重复：
+1. 如果在 p 中，但不在上一个子问题的需求解里。
+  2. 此时要找一个合适的 ·复活点·，直接上例子吧
+
+s "cbdbcae"
+   cbd    b 当出现第二个 b 时，b不与之前分析后所找到的 c 相同，那么可以判定为要从 b 这个点开始复活了，但如果是的话那就找不到了。
+   要复活的点是 从 b 之前的一个 d。 也就是复活点要在重复的那个字符后面开始，那么我们要做的就是把在它之前的字符给加回来。
+p "abcde"
+
+待学习 Discuss 滑动窗口。
+
 """
 class Solution(object):
     def findAnagrams(self, s, p):
@@ -122,7 +139,75 @@ class Solution(object):
 
                     dp = x
             else:
-                if s[i] in _p and s[i] != s[i-1] and s[i] == s[i-len(p)+1]:
+                if s[i] in _p:
+                    if s[i] != s[i-len(p)+sum(dp.values())]:
+                        for t in s[i-len(p)+sum(dp.values()):i]:
+                            if t == s[i]:
+                                break
+                            try:
+                                dp[t] += 1
+                            except:
+                                dp[t] = 1
+                    continue
+
+                x = _p.copy()
+                if s[i] in x:
+                    x[s[i]] -= 1
+                    if not x[s[i]]:
+                        x.pop(s[i])
+                dp = x
+
+        return result
+
+
+# 下面这个代码有瑕疵。
+class Solution(object):
+    def findAnagrams(self, s, p):
+        """
+        :type s: str
+        :type p: str
+        :rtype: List[int]
+        """
+        
+        # p = sorted(p)
+        if not s:
+            return []
+        _p = {}
+        
+        for i in p:
+            try:
+                _p[i] += 1
+            except:
+                _p[i] = 1
+        
+        result = []
+        
+        x = _p.copy()
+        if s[0] in _p:
+            x[s[0]] -= 1
+            if not x[s[0]]:
+                x.pop(s[0])
+                
+        dp = x
+        if not dp:
+            return [i for i in range(len(s)) if s[i] == p]
+        
+        for i in range(1, len(s)):
+            if s[i] in dp:
+                t = dp
+                t[s[i]] -= 1
+                if not t[s[i]]:
+                    t.pop(s[i])
+                
+                if not t:
+                    result.append(i-len(p)+1)
+                    x = {}
+                    _t = s[i-len(p)+1]
+                    x[_t] = 1
+
+                    dp = x
+            else:
+                if s[i] in _p and s[i] != s[i-1] and s[i] == s[i-len(p)+sum(dp.values())]:
                     continue
                 x = _p.copy()
                 if s[i] in x:
@@ -132,4 +217,3 @@ class Solution(object):
                 dp = x
 
         return result
-        
