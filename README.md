@@ -73,7 +73,7 @@
 * - [单双链表.py](Array/OddEvenLinkedList.py)
 * - [解体大数组.py](Array/PartitionArrayIntoDisjointIntervals.py)
 * - [解体列表.py](Array/PartitionList.py)
-* - [Pascal 三角I_II.py](Array/Pascal's TriangleI_II.py)
+* - [Pascal 三角I_II.py](Array/Pascal'sTriangleI_II.py)
 * - [+1.py](Array/PlusOne.py)
 * - [从已排序的数组中删除重复数据.py](Array/RemoveDuplicatesFromSortedArray.py)
 * - [从已排序的数组中删除重复数据II.py](Array/RemoveDuplicatesFromSortedArrayII.py)
