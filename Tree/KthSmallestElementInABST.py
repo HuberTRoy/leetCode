@@ -56,24 +56,18 @@ https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/
 #         self.left = None
 #         self.right = None
 
-class Solution(object):
-    def kthSmallest(self, root, k):
-        """
-        :type root: TreeNode
-        :type k: int
-        :rtype: int
-        """
-        self.inorder_result = []
-        
-        def inorder(root):
-            if root.left:
-                inorder(root.left)
-                
-            self.inorder_result.append(root.val)
-            
-            if root.right:
-                inorder(root.right)
-        
-        inorder(root)
-        
-        return self.inorder_result[k-1]
+class Solution:
+
+    def find_data(self, root: TreeNode):
+
+        if root is None:
+            return
+        Solution.find_data(self,root.left)
+        self.data.append(root.val)
+        Solution.find_data(self,root.right)
+        return
+    
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        self.data = []
+        Solution.find_data(self, root)
+        return self.data[k-1]
